@@ -33,7 +33,7 @@ let theNumber = Number(testInput);
     
 }
 
-function formSubmission(document,pilot,copilot,fuelLevel,cargoLevel,list) {
+function formSubmission(document,pilot,copilot,fuelLevel,cargoMass,list) {
   let fuel = document.getElementById("fuelStatus");
   let cargo = document.getElementById("cargoStatus");
   let pilotStatus= document.getElementById("pilotStatus");
@@ -51,21 +51,23 @@ function formSubmission(document,pilot,copilot,fuelLevel,cargoLevel,list) {
     else {
      pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch.`;
      copilotStatus.innerHTML = `CoPilot ${copilot} is ready for launch.`;
+     console.log(list);
      list.style.visibility = "visible";
+    
 
-     if(fuelLevel<10000 && cargoLevel<=10000) {
+     if(fuelLevel<10000 && cargoMass<10000) {
           fuel.innerHTML = "Not enough fuel for launch";
           cargo.innerHTML = "Cargo mass low enough for launch";
           launchStatus.innerHTML = "Shuttle not ready for launch";
           launchStatus.style.color = "red";
       }
-      else if(fuelLevel>=10000 && cargoLevel>10000) {
+      else if(fuelLevel>=10000 && cargoMass>10000) {
           fuel.innerHTML = "Fuel level high enough for launch";
           cargo.innerHTML = "Cargo mass is too high for launch";
           launchStatus.innerHTML = "Shuttle not ready for launch";
           launchStatus.style.color = "red";    
      }
-     else if(fuelLevel<10000 && cargoLevel>10000){
+     else if(fuelLevel<10000 && cargoMass>10000){
           fuel.innerHTML = "Not enough fuel for launch";
           cargo.innerHTML = "Cargo mass is too high for launch";
           launchStatus.innerHTML = "Shuttle not ready for launch";
@@ -79,6 +81,7 @@ function formSubmission(document,pilot,copilot,fuelLevel,cargoLevel,list) {
       }
 
     }    
+  }
 
 async function myFetch() {
   let planetsReturned;
@@ -91,11 +94,13 @@ async function myFetch() {
 } 
 
 function pickPlanet(planets) {
+  console.log(planets[0]);
   let index = Math.floor(Math.random()* planets.length);
-    return planets(index);
+    console.log (planets[index]);
+    return planets[index];
 
 }
-};
+
 
 
 module.exports.addDestinationInfo = addDestinationInfo;

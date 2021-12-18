@@ -44,7 +44,7 @@ function formSubmission(document,pilot,copilot,fuelLevel,cargoMass,list) {
         alert("All fields are required");
         
    } 
-    else if (validateInput(pilot)==="Is a number"||validateInput(copilot)==="Is a number"||validateInput(fuelLevel)==="Not a number"||validateInput(cargoMass)==="Not a Number") {
+    else if (validateInput(pilot)==="Is a number"||validateInput(copilot)==="Is a number"||validateInput(fuelLevel)==="Not a number"||validateInput(cargoMass)==="Not a number") {
         alert("Please enter valid information");  
            
    }  
